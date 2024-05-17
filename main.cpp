@@ -8,6 +8,8 @@
 
 int main()
 {
+    //testing the string 
+
     // MString str = "Hellow";
     // str.print();
 
@@ -24,10 +26,12 @@ int main()
     PerPub iPerPub("Fitnez for pros", "Short story about some fitness", 4155687, 2012, "weekly", 560);
     Comics iComics("Batman", "Short story about some Batmans", 44556699, 2000, "Larry", "DigiPromaster", 455902, "weekly", 560);
 
+    //testing the book 
     iBook.print();
     iPerPub.print();
     iComics.print();
 
+    //testing the users
     User smartBoy("Pesho");
     Book cBook("C++ for the top 1percent of the world", "You are not the best coder if you haven't read this", 66666666, 2022, "Bjarne Stroustrup", "C++ for the win", 666);
     smartBoy.addNewBook(iBook);
