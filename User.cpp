@@ -260,9 +260,9 @@ void User::resize(int& capacity, int size, int resizeNumber, Copy **&copy)
     int i = 0;
     Copy** newCopy = new Copy*[capacity];
         for ( i = 0; i < size; i++)
-        newCopy[i] = copy[i] ? copy[i]->clone() : nullptr;
+            newCopy[i] = copy[i] ? copy[i]->clone() : nullptr;
 
-    //clear the shapes in copy
+    //I think we need to clear the shapes in copy
     for (int i = 0; i < size; i++)
     {
         delete copy[i];
