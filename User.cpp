@@ -171,9 +171,10 @@ void User::operator[](const int libraryID) const
     //     std::cout << "Have not read " << libraryID << std::endl;
 }
 
-void User::operator+=(const Copies &copy)
+User& User::operator+=(const Copies &copy)
 {
     addNewBook(copy);
+    return *this;
 }
 
 User User::operator+(const Copies &copy)
@@ -183,9 +184,10 @@ User User::operator+(const Copies &copy)
     return result;
 }
 
-void User::operator-=(const int libraryID)
+User& User::operator-=(const int libraryID)
 {
     returnBook(libraryID);
+    return *this;
 }
 
 User User::operator-(const int libraryID)

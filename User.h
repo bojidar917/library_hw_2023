@@ -30,10 +30,10 @@ public: //operator overloading
 
     void operator[](const int libraryID) const; // it is not working as I wish to
 
-    void operator+=(const Copies& copy);
+    User& operator+=(const Copies& copy);
     User operator+(const Copies& copy);
 
-    void operator-=(const int libraryID);
+    User& operator-=(const int libraryID);
     User operator-(const int libraryID);
 
 private: //memebers
