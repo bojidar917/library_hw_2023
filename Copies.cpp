@@ -3,7 +3,7 @@
 #include <stdexcept>
 #include <iostream>
 
-Copy::Copy(const MString title, const MString summary, const int libraryID, const int year)
+Copy::Copy(const MString& title, const MString& summary, int libraryID, int year)
 {
     if(year <= 2024)
         this->year_of_publishing = year;
