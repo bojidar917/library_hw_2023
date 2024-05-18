@@ -43,7 +43,10 @@ MString::~MString()
 
 void MString::print() const
 {
-    std::cout << this->str << std::endl;
+    if(this->str)
+        std::cout << this->str << std::endl;
+    else
+        std::cout << "" << std::endl;
 }
 
 bool MString::operator==(const MString &other) const
