@@ -16,7 +16,15 @@ User::User(const char *name)
 
 User::User(const User &other)
 {
-    copy(other);
+    try
+    {
+        copy(other);
+    }
+    catch(...)
+    {
+        clear();
+        throw;
+    }
 }
 
 User &User::operator=(const User &other)
@@ -24,7 +32,15 @@ User &User::operator=(const User &other)
     if(this != &other)
     {
         clear();
-        copy(other);
+        try
+        {
+            copy(other);
+        }
+        catch(...)
+        {
+            clear();
+            throw;
+        }
     }
 
     return *this;
@@ -205,55 +221,27 @@ void User::clear()
 
 void User::copy(const User &other)
 {
-    try
-    {
-        this->name = other.name;
-    }
-    catch(const std::bad_alloc())
-    {
-        clear();
-    }
-    
-    if(other.allCopies)
-    {
-        try
-        {
-            Copy** newArr = new Copy*[other.capacity];
-            for (int i = 0; i < other.size; i++)
-                newArr[i] = this->allCopies[i] ? this->allCopies[i] : nullptr;
+    this->name = other.name;
 
-            delete [] this->allCopies;
-            this->allCopies = newArr;   
+    Copy** newArr = new Copy*[other.capacity];
+    for (int i = 0; i < other.size; i++)
+        newArr[i] = this->allCopies[i] ? this->allCopies[i] : nullptr;
 
-            this->capacity = other.capacity;
-            this->size = other.size;
-        }
-        catch(const std::bad_alloc())
-        {
-            clear();
-        }
-    }
+    delete [] this->allCopies;
+    this->allCopies = newArr;   
 
-    if(other.currCopies)
-    {
-        try
-        {
-            Copy** newArr = new Copy*[capacity];
-            for (int i = 0; i < other.currSize; i++)
-                newArr[i] = this->currCopies[i] ? this->currCopies[i] : nullptr;
+    this->capacity = other.capacity;
+    this->size = other.size;
 
-            delete [] this->currCopies;
-            this->currCopies = newArr; 
+    Copy** newArr = new Copy*[capacity];
+    for (int i = 0; i < other.currSize; i++)
+        newArr[i] = this->currCopies[i] ? this->currCopies[i] : nullptr;
 
-            this->currCapacity = other.currCapacity;
-            this->currSize = other.currSize;
-        }
-        catch(const std::bad_alloc())
-        {
-            clear();
-        }
-    }
-    else throw std::invalid_argument("the inputed currCopies array is corrupted");
+    delete [] this->currCopies;
+    this->currCopies = newArr; 
+
+    this->currCapacity = other.currCapacity;
+    this->currSize = other.currSize;
 }
 
 void User::clear(Copy **&copy, int size)
