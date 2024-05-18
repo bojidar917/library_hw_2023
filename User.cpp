@@ -99,7 +99,7 @@ void User::returnBook(const int libraryID)
     }
 }
 
-int User::findBook(const int libraryID, int size, Copy **&copyToSearch) const
+int User::findBook(const int libraryID, int size, const Copy *const* copyToSearch) const
 {
     for (int i = 0; i < size; i++)
     {
@@ -174,7 +174,7 @@ bool User::operator>(const User &other) const
 }
 
 const Copy* User::operator[](const int libraryID) const 
-{
+{ 
     //TODO: not working 😞
     int indexCurr = findBook(libraryID, this->currSize, this->currCopies);
     int indexAll = findBook(libraryID, this->size, this->allCopies);
@@ -234,12 +234,12 @@ void User::copy(const User &other)
     this->capacity = other.capacity;
     this->size = other.size;
 
-    Copy** newArr = new Copy*[capacity];
+    Copy** newArrCurr = new Copy*[capacity]; 
     for (int i = 0; i < other.currSize; i++)
-        newArr[i] = this->currCopies[i] ? this->currCopies[i]->clone() : nullptr;
+        newArrCurr[i] = this->currCopies[i] ? this->currCopies[i]->clone() : nullptr;
 
     delete [] this->currCopies;
-    this->currCopies = newArr; 
+    this->currCopies = newArrCurr; 
 
     this->currCapacity = other.currCapacity;
     this->currSize = other.currSize;

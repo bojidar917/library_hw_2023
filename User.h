@@ -14,7 +14,7 @@ public: //functions
     void addNewBook(const Copy& copy);
     void returnBook(const int libraryID);
 
-    int findBook(const int libraryID, int size, Copy**& copyToSearch) const;
+    int findBook(const int libraryID, int size, const Copy *const* copyToSearch) const;
 
     void printInfo() const;
 
