@@ -258,24 +258,16 @@ void User::resize(int& capacity, int size, int resizeNumber, Copy **&copy)
     capacity = resizeNumber;
     int i = 0;
     Copy** newCopy = new Copy*[capacity];
-    try
-    {
-         for ( i = 0; i < size; i++)
-            newCopy[i] = copy[i] ? copy[i]->clone() : nullptr;
+        for ( i = 0; i < size; i++)
+        newCopy[i] = copy[i] ? copy[i]->clone() : nullptr;
 
-        //clear the shapes in copy
-        for (int i = 0; i < size; i++)
-        {
-            delete copy[i];
-        }
-        delete [] copy;
-        
-        copy = newCopy;   
-    }
-    catch(const std::bad_alloc&)
+    //clear the shapes in copy
+    for (int i = 0; i < size; i++)
     {
-        clear();
-        std::cout << "Memory problem! All resources are cleared! User resize\n";
+        delete copy[i];
     }
+    delete [] copy;
+
+    copy = newCopy;
 }
 
