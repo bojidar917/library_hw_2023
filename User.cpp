@@ -3,9 +3,9 @@
 #include <iostream>
 #include <stdexcept>
 
-User::User(const char *name)
+User::User()
 {
-    this->name = name;
+    MString name;
     this->currCapacity = 0;
     this->currSize = 0;
     this->size = 0;
@@ -14,7 +14,18 @@ User::User(const char *name)
     allCopies = nullptr;
 }
 
-User::User(const User &other)
+User::User(const char *name) : User()
+{
+    this->name = name;
+    // this->currCapacity = 0;
+    // this->currSize = 0;
+    // this->size = 0;
+    // this->capacity = 0;
+    // currCopies = nullptr;
+    // allCopies = nullptr;
+}
+
+User::User(const User &other) : User()
 {
     try
     {

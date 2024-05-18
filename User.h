@@ -4,6 +4,7 @@
 class User
 {
 public:
+    User();
     User(const char* name);
     User(const User& other);
     User& operator=(const User& other);
