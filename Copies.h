@@ -2,14 +2,14 @@
 
 #include "String.h"
 
-class Copies
+class Copy
 {
 public:
-    // Copies();
-    Copies(const MString title, const MString summary, const int libraryID, const int year);
-    // Copies(const Copies& other);
-    // Copies& operator=(const Copies& other);
-    virtual ~Copies() = default;
+    // Copy();
+    Copy(const MString title, const MString summary, const int libraryID, const int year);
+    // Copy(const Copy& other);
+    // Copy& operator=(const Copy& other);
+    virtual ~Copy() = default;
 
     //I think we don't need the B4 because we "hosted" the dynamic memory outside our class
 
@@ -17,7 +17,7 @@ public:
 
     virtual void print() const;
 
-    virtual Copies* clone() const = 0;
+    virtual Copy* clone() const = 0;
 
 private:
     MString title;

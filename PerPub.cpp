@@ -4,7 +4,7 @@
 #include <iostream>
 
 PerPub::PerPub(const MString title, const MString summary, const int libraryID, const int year, const MString period, const int number)
-    :Copies(title, summary, libraryID, year)
+    :Copy(title, summary, libraryID, year)
 {
     if(number > 0)
         this->number = number;
@@ -12,7 +12,7 @@ PerPub::PerPub(const MString title, const MString summary, const int libraryID, 
     this->period_of_publishing = period;
 }
 
-Copies *PerPub::clone() const
+Copy *PerPub::clone() const
 {
     return new PerPub(*this);
 }

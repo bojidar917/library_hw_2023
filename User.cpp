@@ -35,7 +35,7 @@ User::~User()
     clear();
 }
 
-void User::addNewBook(const Copies &copy)
+void User::addNewBook(const Copy &copy)
 {
     if(this->size == this->capacity)
         resize(this->capacity, this->size, this->capacity*2+1, this->allCopies);
@@ -55,7 +55,7 @@ void User::returnBook(const int libraryID)
     if (foundIndex != -1)
     {
         std::cout << "Found book at index: " << foundIndex << "\n";
-        Copies* toDelete = this->currCopies[foundIndex];
+        Copy* toDelete = this->currCopies[foundIndex];
 
         if (toDelete == nullptr)
         {
@@ -83,7 +83,7 @@ void User::returnBook(const int libraryID)
     }
 }
 
-int User::findBook(const int libraryID, int size, Copies **&copyToSearch) const
+int User::findBook(const int libraryID, int size, Copy **&copyToSearch) const
 {
     for (int i = 0; i < size; i++)
     {
@@ -171,13 +171,13 @@ void User::operator[](const int libraryID) const
     //     std::cout << "Have not read " << libraryID << std::endl;
 }
 
-User& User::operator+=(const Copies &copy)
+User& User::operator+=(const Copy &copy)
 {
     addNewBook(copy);
     return *this;
 }
 
-User User::operator+(const Copies &copy)
+User User::operator+(const Copy &copy)
 {
     User result(*this);
     result += copy;
@@ -218,7 +218,7 @@ void User::copy(const User &other)
     {
         try
         {
-            Copies** newArr = new Copies*[other.capacity];
+            Copy** newArr = new Copy*[other.capacity];
             for (int i = 0; i < other.size; i++)
                 newArr[i] = this->allCopies[i] ? this->allCopies[i] : nullptr;
 
@@ -239,7 +239,7 @@ void User::copy(const User &other)
     {
         try
         {
-            Copies** newArr = new Copies*[capacity];
+            Copy** newArr = new Copy*[capacity];
             for (int i = 0; i < other.currSize; i++)
                 newArr[i] = this->currCopies[i] ? this->currCopies[i] : nullptr;
 
@@ -257,7 +257,7 @@ void User::copy(const User &other)
     else throw std::invalid_argument("the inputed currCopies array is corrupted");
 }
 
-void User::clear(Copies **&copy, int size)
+void User::clear(Copy **&copy, int size)
 {
     for (int i = 0; i < this->size; i++)
         delete copy[i];
@@ -265,12 +265,12 @@ void User::clear(Copies **&copy, int size)
     delete [] copy;
 }
 
-void User::resize(int& capacity, int size, int resizeNumber, Copies **&copy)
+void User::resize(int& capacity, int size, int resizeNumber, Copy **&copy)
 {
     // if(copy == nullptr) capacity = 1;
     capacity = resizeNumber;
     int i = 0;
-    Copies** newCopy = new Copies*[capacity];
+    Copy** newCopy = new Copy*[capacity];
     try
     {
          for ( i = 0; i < size; i++)

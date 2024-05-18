@@ -2,7 +2,7 @@
 
 #include "Copies.h"
 
-class Book : public virtual Copies
+class Book : public virtual Copy
 {
 public:
     // Book();
@@ -13,7 +13,7 @@ public:
 
     //TODO: should we use the big four when we have the string class
 
-    virtual Copies* clone() const override;
+    virtual Copy* clone() const override;
 
 private:
     MString author;

@@ -11,10 +11,10 @@ public:
 
 public: //functions
 
-    void addNewBook(const Copies& copy);
+    void addNewBook(const Copy& copy);
     void returnBook(const int libraryID);
 
-    int findBook(const int libraryID, int size, Copies**& copyToSearch) const;
+    int findBook(const int libraryID, int size, Copy**& copyToSearch) const;
 
     void printInfo() const;
 
@@ -30,19 +30,19 @@ public: //operator overloading
 
     void operator[](const int libraryID) const; // it is not working as I wish to
 
-    User& operator+=(const Copies& copy);
-    User operator+(const Copies& copy);
+    User& operator+=(const Copy& copy); // TODO: should we return const
+    User operator+(const Copy& copy); // same here
 
     User& operator-=(const int libraryID);
     User operator-(const int libraryID);
 
 private: //memebers
     MString name;
-    Copies** allCopies;
+    Copy** allCopies;
     int size;
     int capacity;
 
-    Copies** currCopies;
+    Copy** currCopies;
     int currSize;
     int currCapacity;
 
@@ -50,7 +50,7 @@ private: //methods
     void clear();
     void copy(const User& other);
 
-    void clear(Copies **&copy, int size);
+    void clear(Copy **&copy, int size);
 
-    void resize(int& capacity, int size, int reiszeNumber, Copies **&copy);
+    void resize(int& capacity, int size, int reiszeNumber, Copy **&copy);
 }; 
