@@ -4,7 +4,7 @@
 class Comics : public Book, public PerPub
 {
 public:
-    Comics(const char* title, const char* summary, const int libraryID, const int year, const char* author, const char* publisher, const int genre, const char* period, const int number);
+    Comics(const MString& title, const MString& summary, const int libraryID, const int year, const MString& author, const MString& publisher, const int genre, const MString& period, const int number);
 
     virtual Copy* clone() const override;
 
