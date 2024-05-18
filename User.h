@@ -47,7 +47,7 @@ private: //memebers
     int currSize;
     int currCapacity;
 
-    //by the task user can hold up to 5 copies, so we don't need to make it dynamic
+    // by the task user can hold up to 5 copies, so we don't need to make it dynamic
     // const int MAX_COPIES = 5;
     // Copy* currCopies[MAX_COPIES];
 

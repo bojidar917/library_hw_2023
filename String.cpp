@@ -72,3 +72,22 @@ void MString::copy(const MString &other)
         strcpy(this->str, other.str);   
     }
 }
+
+std::ostream &operator<<(std::ostream &os, const MString &str)
+{
+    if(str.str)
+        os << str.str;
+    else
+        os << "(null)";
+    return os;
+}
+
+std::istream &operator>>(std::istream &is, MString &str)
+{
+    char buffer[1024];
+    is >> buffer;
+    str.clear();
+    str.str = new char[strlen(buffer) + 1];
+    strcpy(str.str, buffer);
+    return is;
+}
