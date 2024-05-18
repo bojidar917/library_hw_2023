@@ -34,11 +34,9 @@ MString &MString::operator=(const MString &other)
 
 MString::~MString()
 {
-    if (str != nullptr) 
-    {
-        delete[] str;
-        str = nullptr;
-    }
+
+    clear();
+
 }
 
 void MString::print() const
@@ -58,7 +56,12 @@ bool MString::operator==(const MString &other) const
 
 void MString::clear()
 {
-    delete[] this->str;
+    if (str != nullptr) 
+    {
+        delete[] str;
+        str = nullptr;
+    }
+    // delete[] this->str;
 }
 
 void MString::copy(const MString &other)
