@@ -261,9 +261,15 @@ void User::resize(int& capacity, int size, int resizeNumber, Copy **&copy)
     try
     {
          for ( i = 0; i < size; i++)
-            newCopy[i] = copy[i] ? copy[i] : nullptr;
+            newCopy[i] = copy[i] ? copy[i]->clone() : nullptr;
 
+        //clear the shapes in copy
+        for (int i = 0; i < size; i++)
+        {
+            delete copy[i];
+        }
         delete [] copy;
+        
         copy = newCopy;   
     }
     catch(const std::bad_alloc&)
