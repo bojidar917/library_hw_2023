@@ -236,7 +236,7 @@ void User::copy(const User &other)
 
     Copy** newArr = new Copy*[capacity];
     for (int i = 0; i < other.currSize; i++)
-        newArr[i] = this->currCopies[i] ? this->currCopies[i] : nullptr;
+        newArr[i] = this->currCopies[i] ? this->currCopies[i]->clone() : nullptr;
 
     delete [] this->currCopies;
     this->currCopies = newArr; 
@@ -260,13 +260,8 @@ void User::resize(int& capacity, int size, int resizeNumber, Copy **&copy)
     int i = 0;
     Copy** newCopy = new Copy*[capacity];
         for ( i = 0; i < size; i++)
-            newCopy[i] = copy[i] ? copy[i]->clone() : nullptr;
+            newCopy[i] = copy[i] ? copy[i] : nullptr;
 
-    //I think we need to clear the shapes in copy
-    for (int i = 0; i < size; i++)
-    {
-        delete copy[i];
-    }
     delete [] copy;
 
     copy = newCopy;
