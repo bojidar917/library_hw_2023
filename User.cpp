@@ -233,7 +233,6 @@ void User::copy(const User &other)
             clear();
         }
     }
-    else throw std::invalid_argument("the inputed allCopies array is corrupted");
 
     if(other.currCopies)
     {
