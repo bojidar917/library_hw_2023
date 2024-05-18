@@ -173,18 +173,19 @@ bool User::operator>(const User &other) const
     return other < *this;
 }
 
-void User::operator[](const int libraryID) const 
+const Copy* User::operator[](const int libraryID) const 
 {
     //TODO: not working 😞
-    // int indexCurr = findBook(libraryID, this->currSize, this->currCopies);
-    // int indexAll = findBook(libraryID, this->size, this->allCopies);
+    int indexCurr = findBook(libraryID, this->currSize, this->currCopies);
+    int indexAll = findBook(libraryID, this->size, this->allCopies);
 
-    // if (indexCurr != -1)
-    //     std::cout << "Currently reading " << libraryID << std::endl;
-    // else if (indexAll != -1)
-    //     std::cout << "Have read " << libraryID << std::endl;
-    // else
-    //     std::cout << "Have not read " << libraryID << std::endl;
+    if (indexCurr != -1)
+        return this->currCopies[indexCurr];
+        
+    else if (indexAll != -1)
+        return this->allCopies[indexAll];
+        
+    return nullptr;
 }
 
 User& User::operator+=(const Copy &copy)

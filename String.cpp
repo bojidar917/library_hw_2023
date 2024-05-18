@@ -10,7 +10,7 @@ MString::MString(const char *str)
 {
     if(str)
     {
-        this->str = new(std::nothrow) char[strlen(str) + 1];
+        this->str = new char[strlen(str) + 1];
         strcpy(this->str, str);
     }
     else throw std::invalid_argument("Inputed string is not valid");

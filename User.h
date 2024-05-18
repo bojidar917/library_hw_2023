@@ -28,7 +28,7 @@ public: //operator overloading
     bool operator>=(const User& other) const;
     bool operator>(const User& other) const;
 
-    void operator[](const int libraryID) const; // it is not working as I wish to
+    const Copy* operator[](const int libraryID) const; // it is not working as I wish to
 
     User& operator+=(const Copy& copy); // TODO: should we return const
     User operator+(const Copy& copy); // same here
