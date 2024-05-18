@@ -226,7 +226,7 @@ void User::copy(const User &other)
 
     Copy** newArr = new Copy*[other.capacity];
     for (int i = 0; i < other.size; i++)
-        newArr[i] = this->allCopies[i] ? this->allCopies[i] : nullptr;
+        newArr[i] = this->allCopies[i] ? this->allCopies[i]->clone() : nullptr;
 
     delete [] this->allCopies;
     this->allCopies = newArr;   
